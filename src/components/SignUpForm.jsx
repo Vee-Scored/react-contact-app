@@ -5,6 +5,7 @@ import { api } from "../https/AxiosInstance";
 import { useLoading } from "../store/UseLoadingStore";
 import * as Yup from "yup";
 import { Formik, Field, Form } from "formik";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignUpForm = () => {
   const initialForm = {
@@ -14,23 +15,27 @@ const SignUpForm = () => {
     password_confirmation: "",
   };
 
+  const successNotify = () => toast.success("Registered Successfully!")
+  const errorNotify = () => toast.error("Something wrong!")
   const nav = useNavigate();
   const { setLoading, setLoaded } = useLoading();
 
   const registerUser = async (userData) => {
     setLoading();
     try {
-      const response = await api.post("/register", userData);
-      console.log("Registration successful:", response.data);
-
-      nav("/signUpSuccess");
+      await api.post("/register", userData);
+     
+      successNotify()
+      setTimeout(() => {
+        nav('/login')
+      }, 1000);
     } catch (error) {
       if (error.response) {
-        console.error("Registration error:", error.response.data);
+        errorNotify()
       } else if (error.request) {
-        console.error("No response received:", error.request);
+        errorNotify()
       } else {
-        console.error("Error:", error.message);
+        errorNotify();
       }
     } finally {
       setLoaded();
@@ -42,7 +47,7 @@ const SignUpForm = () => {
       .min(5, "Name is too short!")
       .max(20, "Name is too long!")
       .required("Name field is required!"),
-    email: Yup.string().email("Invalid email").required("Email is required"),
+    email: Yup.string().min(13,"Invalid email!").email("Invalid email!").required("Email is required!"),
     password: Yup.string()
       .min(8, "At least 8 letters!")
       .max(16, "Password is too long!")
@@ -54,6 +59,7 @@ const SignUpForm = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
+      <Toaster/>
       <div className="border-2 rounded min-w-72 max-w-md mx-auto py-5 px-4">
         <h3 className="text-lg mb-2 font-semibold">Sign Up Form</h3>
         <Formik
