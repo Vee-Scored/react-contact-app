@@ -52,7 +52,7 @@ const IndexPage = () => {
   }, [exitToken, nav]); // Adding `nav` to the dependency array
 
   return (
-    <div className='flex w-full overflow-x-auto  flex-col h-screen'>
+    <div className='flex w-full overflow-x-auto  flex-col min-h-svh'>
       {isLoading && <LoadingComponent/>}
       <Header />
      

@@ -25,7 +25,7 @@ const Header = () => {
     <div className="border-b py-3 border-b-slate-600 dark:border-b-slate-300">
       <Container>
         <div className="flex justify-between items-center">
-          <div className="font-serif text-lg font-semibold">
+          <div className="font-serif text-2xl font-semibold">
             <Link>Contacts</Link>
           </div>
           <div className="flex gap-3">
