@@ -48,7 +48,7 @@ const Footer = () => {
           </a>
         </div>
         <p className="text-center font-semibold font-mono mt-3 text-md dark:text-white">
-          Used api :{" "}
+          Used api :
           <a
             className="underline"
             href="https://github.com/mmsstudent2021/contact-app"
@@ -56,6 +56,17 @@ const Footer = () => {
             MMS's Contact-app-api
           </a>
         </p>
+
+        <p className="text-center font-semibold font-mono mt-3 text-md dark:text-white">
+          Code :
+          <a
+            className="underline"
+            href="https://github.com/Vee-Scored/react-contact-app"
+          >
+            Github Repository
+          </a>
+        </p>
+        
       </Container>
     </div>
   );
