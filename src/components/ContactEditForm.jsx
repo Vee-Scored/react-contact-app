@@ -21,7 +21,7 @@ const ContactEditForm = ({ contact }) => {
         successNotify();
         setTimeout(() => {
           nav("/indexPage");
-        }, 1000);
+        }, 2000);
       }
     } catch (err) {
       errorNotify();
